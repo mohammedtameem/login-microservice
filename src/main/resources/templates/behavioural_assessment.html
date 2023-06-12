@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 mt-3">
+                <div class="card">
+                    <div class="card-header text-center fs-4">Behavioural Asssisment</div>
+
+                    <th:block th:if="${session.msg}">
+                        <p class="text-center fs-4 text-success">[[${session.msg}]]</p>
+                        <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+
+                    </th:block>
+                    <div class="card-body">
+                        <form  th:action="@{/user/technical_assessment/}" th:UserAssignment="${userAssignment}" method="post">
+                            <div class="mb-3">
+                                <label>Email ID</label>
+                                <input type="text" th:field="*{userAssignment.emailId}" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Assessment</label><br><br>
+                                <select id="assisment" th:field="*{userAssignment.assisgnment}" class="form-control">
+                                    <option value="0">select option</option>
+                                    <option value="Step plus">Step plus</option>
+                                    <option value="Email Etiquette">Email Etiquette</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Date</label>
+                                <input type="date" th:field="*{userAssignment.assesment_date}" class="form-control">
+                            </div>
+
+                            <button class="btn btn-primary col-md-6 offset-md-3">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

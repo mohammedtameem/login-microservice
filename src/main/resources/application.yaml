@@ -1,0 +1,34 @@
+server:
+  port: 8081
+
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/airobosoft
+    username: root
+    password: login123
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto : update
+  application:
+    name: LOGIN-SERVICE
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
+
+
+employee:
+       service_url: http://localhost:8082/api/v1
+
+admin:
+       service_url: http://localhost:8083/api/v1
+
